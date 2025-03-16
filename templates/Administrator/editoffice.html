@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Office Staff </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .staff-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+        .staff-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .staff-container input,
+        .staff-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        .staff-container button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .staff-container button:hover {
+            background-color: #45a049;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        .action-buttons button {
+            width: 48%;
+            padding: 12px;
+        }
+        .delete-button {
+            background-color: #d32f2f;
+        }
+        .delete-button:hover {
+            background-color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="staff-container">
+        <h2>Office Staff</h2>
+        <form id="staffForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" name="staffid" value="{{data.staffid}}">
+            <input type="text" name="staffname" placeholder="Name" value="{{data.staffname}}" required>
+
+            <select name="gender" required>
+                <!-- <option value="" disabled selected>Gender</option> -->
+                <option value="Male"{% if data.gender == 'Male' %}selected{% endif %}>Male</option>
+                <option value="Female"{% if data.gender == 'Female' %}selected{% endif %}>Female</option>
+                <option value="Other"{% if data.gender == 'Other' %}selected{% endif %}>Other</option>
+            </select>
+            <input type="text" name="email" placeholder="email" required value="{{data.email}}" required>
+            
+            <input type="text" name="qualification" placeholder="Qualification" required value="{{data.qualification}}" reguired>
+            <input type="tel" name="phonenumber" placeholder="Phone Number" required value="{{data.phonenumber}}" reguired>
+            <input type="text" name="currentaddress" placeholder="Current Address" required value="{{data.currentaddress}}" reguired>
+            <input type="file" name="choosefile" required value="{{data.choosefile}}" reguired>
+            <div class="action-buttons">
+                <button type="submit">Save Staff</button>
+                <button type="button" class="delete-button" onclick="deleteStaff()">Delete</button>
+            </div>
+        </form>
+    </div>
+    <script>
+
+
+        function deleteStaff() {
+            const name = prompt("Enter the staff name to delete:");
+            if (name) {
+                alert(`Staff Deleted: ${name}`);
+            }
+        }
+    </script>
+</body>
+</html>

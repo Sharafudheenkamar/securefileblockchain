@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Documents</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .delete-btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .delete-btn:hover {
+            background-color: darkred;
+        }
+        .add-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            background-color: green;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+        .add-btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Uploaded Documents</h2>
+
+    <!-- Add Document Button -->
+    <a href="{% url 'uploaddoc' %}" class="add-btn">+ Add Document</a>
+
+    {% if data %}
+    <table>
+        <tr>
+            <th>Document Name</th>
+            <th>Action</th>
+        </tr>
+        {% for doc in data %}
+        <tr>
+            <td><a href="{{ doc.choosefile.url }}" target="_blank">View</a></td>
+            <td>
+                <form method="post" action="{% url 'delete_doc' doc.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn" onclick="return confirm('Are you sure you want to delete this document?');">
+                        Delete
+                    </button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No documents found.</p>
+    {% endif %}
+
+</body>
+</html>

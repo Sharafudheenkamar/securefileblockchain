@@ -1,0 +1,13 @@
+            {%for i in data%}
+            <tr>
+                
+                <th>{{i.departmentname}}</th>
+                <th>{{i.departmentcode}}</th>
+                <th>{{i.departmentstaff}}</th>
+                <th>{{i.hod}}</th>
+                <th><div class="action-container">
+                    <a href="/edit_department/{{i.id}}/"><button class="action-btn">Edit</button></a>
+                    <a href="/delete_department/{{i.id}}/"><button class="action-btn">Delete</button></a>
+                </div></th>
+            </tr>
+            {% endfor %}

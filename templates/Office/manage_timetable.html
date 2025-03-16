@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <head>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+      }
+  
+      table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+  
+      th, td {
+        padding: 12px;
+        text-align: left;
+      }
+  
+      td {
+        background-color: #fff;
+      }
+  
+      th {
+        background-color: #333;
+        color: #fff;
+      }
+  
+      select {
+        padding: 8px;
+        width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+  
+      input[type="submit"] {
+        padding: 10px 20px;
+        background-color: #5cb85c;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+  
+      input[type="submit"]:hover {
+        background-color: #4cae4c;
+      }
+  
+      div.align-center {
+        text-align: center;
+      }
+  
+      .form-container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      }
+  
+      .form-container table {
+        margin-top: 10px;
+        width: 100%;
+      }
+  
+      .form-container table tr:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+  
+      .form-container table tr:hover {
+        background-color: #f1f1f1;
+      }
+  
+      .form-container td select {
+        width: 95%;
+      }
+    </style>
+  </head>
+  
+</head>
+<body>
+  
+</body>
+
+<body>
+
+<form id="form1" name="form1" method="post" action="add_timetable_action" enctype="multipart/form-data">
+  {% csrf_token %}
+  <table width="200" border="1" class="table table-dark table-hover">
+      <tr>
+      <td>Day</td>
+      <td>
+        <select name='day'>
+          {% for day in available_days %}
+            <option value="{{ day }}">{{ day }}</option>
+          {% endfor %}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>slot_9_10</td>
+      <td>
+        <select name='slot_9_10'>
+          {% for i in subjects %}
+          <option value={{ i.id }}>{{ i.name }}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>slot_10_11</td>
+      <td>
+        <select name='slot_10_11'>
+          {% for i in subjects %}
+          <option value={{ i.id }}>{{ i.name }}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>slot_11_12</td>
+      <td>
+        <select name='slot_11_12'>
+          {% for i in subjects %}
+          <option value={{ i.id }}>{{ i.name }}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>slot_1_2</td>
+      <td>
+        <select name='slot_1_2'>
+          {% for i in subjects %}
+          <option value={{ i.id }}>{{ i.name }}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>slot_2_3</td>
+      <td>
+        <select name='slot_2_3'>
+          {% for i in subjects %}
+          <option value={{ i.id }}>{{ i.name }}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>slot_3_4</td>
+      <td>
+        <select name='slot_3_4'>
+          {% for i in subjects %}
+          <option value={{ i.id }}>{{ i.name }}</option>
+          {%endfor%}
+        </select>
+      </td>
+    </tr>
+      
+    <tr>
+      <td colspan="2"><div align="center">
+        <input type="submit" name="Submit" value="Insert" />
+      </div></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

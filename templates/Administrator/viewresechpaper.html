@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Research Papers</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: white;
+        }
+        .paper-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: left;
+            width: 70%;
+            border: 3px solid black;
+        }
+        h2 {
+            color: black;
+            text-align: center;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: left;
+            color: black;
+        }
+        th {
+            background-color: black;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .view-button {
+            padding: 5px 10px;
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+        }
+        .view-button:hover {
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="paper-container">
+        <h2>Staff Research Papers</h2>
+        <table>
+            <tr>
+                <th>Reserch title</th>
+                <th>Author</th>
+                <th>Reserch area Title</th>
+                <th>Date</th>
+                <th>Department</th>
+                <th>VIEW</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{ i.resechtittle }}</td>
+                <td>{{ i.author }}</td>
+                <td>{{ i.reserch_area }}</td>
+                <td>{{ i.date }}</td>
+                <td>{{ i.department }}</td>
+                <td><a href="{{i.choosefile.url}}" target="_blank">View</a></td>
+                <td><a href="#" class="view-button">View</a></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</body>
+</html>

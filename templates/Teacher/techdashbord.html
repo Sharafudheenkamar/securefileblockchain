@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Staff Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .dashboard-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+        .dashboard-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .dashboard-container .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        .dashboard-container .button-container a {
+            display: block;
+            width: 45%;
+            margin: 10px 0;
+            padding: 15px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        .dashboard-container .button-container a:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h2>Teaching Staff Dashboard</h2>
+        <div class="button-container">
+            <a href="/techstaffprofileview">View Profile</a>
+            <a href="/techstaffprofileview">Change Password</a>
+            <a href="/stview">View Student</a>
+            <a href="internal_upload.html">Internal Upload</a>
+            <a href="view_time_table.html">View Time Table</a>
+            <a href="research_paper_upload.html">Research Paper Upload</a>
+        </div>
+    </div>
+</body>
+</html>

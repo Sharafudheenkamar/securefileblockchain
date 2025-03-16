@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Courses</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+        .course-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            border: 3px solid black;
+        }
+        h2 {
+            color: black;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 2px solid black;
+            padding: 10px;
+            text-align: center;
+            color: black;
+        }
+        th {
+            background-color: black;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .action-buttons button {
+            padding: 6px 12px;
+            margin: 2px;
+            border: 2px solid black;
+            cursor: pointer;
+            font-size: 14px;
+            border-radius: 4px;
+            transition: 0.3s;
+            background-color: black;
+            color: white;
+        }
+        .action-buttons button:hover {
+            background-color: white;
+            color: black;
+        }
+        .add-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+        .add-button:hover {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="course-container">
+        <h2>View Courses</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Course code</th>
+                    <th>Course Name</th>
+                    <th>Department</th>
+                    <th>credits</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="courseTableBody">
+                {% for i in data %}
+                <tr>
+                    <td>{{ i.coursecode }}</td>
+                    <td>{{ i.coursename }}</td>
+                    <td>{{ i.department }}</td>
+                    <td>{{ i.credits }}</td>
+                    <td>
+                        <div class="action-container">
+                            <a href="/edit_course/{{i.id}}/"><button class="action-btn">Edit</button></a>
+                            <a href="/delete_course/{{i.id}}/"><button class="action-btn">Delete</button></a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+            <a href="/AddCourseView"><button class="add-btn">Add course</button></a>
+        </div>
+    </body>
+    </html>

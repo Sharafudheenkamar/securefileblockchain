@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insert Timetable</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        label {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        input::placeholder {
+            color: #bbb;
+        }
+
+        select:disabled {
+            background-color: #f4f4f4;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            form  {
+                padding: 15px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h2>Insert Timetable</h2>
+
+<form method="post">
+    {% csrf_token %}
+    <label for="subject">Subject:</label>
+    <select name="subject" id="subject">
+        {% for subject in subjects %}
+            <option value="{{ subject.id }}">{{ subject.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label for="teacher">Teacher:</label>
+    <select name="teacher" id="teacher">
+        {% for teacher in teachers %}
+            <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label for="classroom">Classroom:</label>
+    <select name="classroom" id="classroom">
+        {% for classroom in classrooms %}
+            <option value="{{ classroom.id }}">{{ classroom.name }}</option>
+        {% endfor %}
+    </select>
+    <br>
+
+    <label for="day_of_week">Day of the Week:</label>
+    <input type="text" name="day_of_week" id="day_of_week" placeholder="e.g., Monday">
+    <br>
+
+    <label for="time_slot">Time Slot:</label>
+    <input type="text" name="time_slot" id="time_slot" placeholder="e.g., 09:00-10:00">
+    <br>
+
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Teaching Staff</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .staff-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 800px;
+            margin-bottom: 20px;
+        }
+        .staff-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .staff-container input[type="text"],
+        .staff-container input[type="number"],
+        .staff-container input[type="file"],
+        .staff-container input[type="tel"],
+        .staff-container select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .staff-container button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .staff-container button:hover {
+            background-color: #45a049;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .action-buttons button {
+            width: 48%;
+            padding: 10px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .action-buttons button:hover {
+            background-color: #004d40;
+        }
+        .edit-button {
+            background-color: #0288d1;
+        }
+        .edit-button:hover {
+            background-color: #0277bd;
+        }
+        .delete-button {
+            background-color: #d32f2f;
+        }
+        .delete-button:hover {
+            background-color: #c62828;
+        }
+    </style>
+</head>
+<body>
+    <div class="staff-container">
+        <h2>Edit Teaching Staff</h2>
+        <form id="teachingStaffForm" method="POST">
+            {% csrf_token %}
+
+            <input type="text" name="name" placeholder="Name" value="{{data.name}}" required>
+            <input type="number" name="age" placeholder="Age" value="{{data.age}}" required>
+            <select name="gender"required>
+                <option value="" disabled selected>Gender</option>
+                <option value="Male"{% if data.gender == 'Male' %} selected {% endif %} >Male</option>
+                <option value="Female"{% if data.gender == 'Female' %} selected {% endif %} >Female</option>
+                <option value="Other"{% if data.gender == 'other' %} selected {% endif %} >other</option>
+            </select>
+            <input type="text" name="qualification" placeholder="Qualification" value= "{{data.qualification}}" required>
+            <select name="netOrJrf" required>
+                <option value="" disabled selected>NET or JRF</option>
+                <option value="NET"{% if data.NET_or_JRF == 'NET' %} selected {% endif %} >NET</option>
+                <option value="JRF" {% if data.NET_or_JRF == 'JRF' %} selected {% endif %}>JRF</option>
+            </select>
+            <input type="tel" name="phonenumber" placeholder="Phone Number" value="{{data.phonenumber}}" required>
+            <input type="text" name="currentaddress" placeholder="Current Address" value="{{data.currentaddress}}" required>
+            <input type="file" name="choosefile"required value="{{data.choosefile}}">
+            {% if data.choosefile %}
+            <a href="{{data.choosefile.url}}" target="_blank">View</a>
+            {% endif %}
+            <!-- <img src="" alt="qulification file" style="width: 100px; height: 100px;"> -->
+            <div class="action-buttons">
+                <button type="submit">Save Staff</button>
+                <button type="button" class="delete-button" onclick="deleteStaff()">Delete Staff</button>
+            </div>
+        </form>
+    </div>
+
+   
+</body>
+</html>

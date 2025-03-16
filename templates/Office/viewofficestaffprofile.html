@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Office Staff Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .staff-profile-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1000px;
+        }
+        .staff-profile-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .staff-profile-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .staff-profile-container table, th, td {
+            border: 1px solid #ccc;
+        }
+        .staff-profile-container th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .staff-profile-container th {
+            background-color: #007bff;
+            color: white;
+        }
+        .staff-profile-container tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="staff-profile-container">
+        <h2>Office Staff Profile</h2>
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Details</th>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{data.staffname}}</td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>{{data.gender}}</td>
+            </tr>
+            <tr>
+                <td>Qualification</td>
+                <td>{{data.qualification}}</td>
+            </tr>
+            <tr>
+                <td>Phone Number</td>
+                <td>{{data.phonenumber}}</td>
+            </tr>
+            <tr>
+                <td>Current Address</td>
+                <td>{{data.currentaddress}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

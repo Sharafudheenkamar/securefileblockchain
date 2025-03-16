@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Course</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .course-container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+        }
+        .course-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .course-container input[type="text"],
+        .course-container input[type="number"],
+        .course-container select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+        .course-container button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: 0.3s ease;
+        }
+        .course-container button:hover {
+            background-color: #0056b3;
+        }
+        .delete-button {
+            background-color: #dc3545;
+        }
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div class="course-container">
+        <h2>Edit Course</h2>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="coursename" placeholder="Course Name" required value="{{ data.coursename }}">
+            <input type="text" name="coursecode" placeholder="Course Code" required value="{{ data.coursecode }}">
+            <input type="number" name="credit" placeholder="Credits" required value="{{ data.credits }}">
+            <input type="text" name="department" placeholder="Department" required value="{{ data.department }}">
+            <button type="submit">Save Changes</button>
+            <a href="/delete_course/{{data.id}}/"><button type="button" class="delete-button">Delete Course</button></a>
+        </form>
+    </div>
+</body>
+</html>

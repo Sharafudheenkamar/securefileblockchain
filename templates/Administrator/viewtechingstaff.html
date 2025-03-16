@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Teaching Staff Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .staff-details-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 1000px;
+            border: 3px solid black;
+        }
+        .staff-details-container h2 {
+            margin-bottom: 20px;
+            color: black;
+            text-align: center;
+        }
+        .staff-details-container table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .staff-details-container table, th, td {
+            border: 1px solid black;
+        }
+        .staff-details-container th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        .staff-details-container th {
+            background-color: black;
+            color: white;
+        }
+        .staff-details-container tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .staff-details-container tr:nth-child(odd) {
+            background-color: white;
+        }
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .button-container a {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            border: 2px solid black;
+        }
+        .add-button {
+            background-color: black;
+            color: white;
+        }
+        .add-button:hover {
+            background-color: white;
+            color: black;
+        }
+        .edit-button {
+            background-color: black;
+            color: white;
+        }
+        .edit-button:hover {
+            background-color: white;
+            color: black;
+        }
+        .delete-button {
+            background-color: black;
+            color: white;
+        }
+        .delete-button:hover {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="staff-details-container">
+        <h2>Teaching Staff Details</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Qualification</th>
+                <th>NET/JRF</th>
+                <th>Phone Number</th>
+                <th>Current Address</th>
+                <th>File</th>
+                <th>Actions</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{i.name}}</td>
+                <td>{{i.age}}</td>
+                <td>{{i.gender}}</td>
+                <td>{{i.qualification}}</td>
+                <td>{{i.NET_or_JRF}}</td>
+                <td>{{i.phonenumber}}</td>
+                <td>{{i.currentaddress}}</td>
+                <td>{%if i.choosefile %}<a href="{{ i.choosefile.url }}" download>Download</a>{% endif %}</td>
+                <td>
+                    <a href="/editteach/{{i.id}}" onclick="return confirm('Are you sure you want to edit?')">
+                        <button class="edit-button">Edit</button>
+                    </a>
+                    <a href="/delete/{{i.id}}" onclick="return confirm('Are you sure you want to delete?')">
+                        <button class="delete-button">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="button-container">
+            <a href="/addtechstaff" class="add-button">Add</a>
+        </div>
+    </div>
+</body>
+</html>

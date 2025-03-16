@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Department Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        select, table {
+            margin: 10px;
+            padding: 8px;
+        }
+        table {
+            width: 80%;
+            background: white;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+    </style>
+    <script>
+        function generateTimetable() {
+            let department = document.getElementById("department").value;
+            let semester = document.getElementById("semester").value;
+            let timetable = document.getElementById("timetableBody");
+            
+            let subjects = {
+                "CSE": {
+                    "1": [["Math", "Dr. Smith"], ["Physics", "Dr. Brown"], ["CS Basics", "Dr. Adams"]],
+                    "2": [["Data Structures", "Dr. Jones"], ["Algorithms", "Dr. Lee"], ["OS", "Dr. White"]],
+                    "3": [["DBMS", "Dr. Taylor"], ["Computer Networks", "Dr. Wilson"], ["AI", "Dr. Thomas"]],
+                    "4": [["Software Engineering", "Dr. Martin"], ["Cyber Security", "Dr. Anderson"], ["Big Data", "Dr. Carter"]],
+                    "5": [["Cloud Computing", "Dr. Harris"], ["IoT", "Dr. Young"], ["Blockchain", "Dr. Scott"]],
+                    "6": [["Machine Learning", "Dr. Hall"], ["Deep Learning", "Dr. Nelson"], ["Project", "Dr. King"]]
+                },
+                "ECE": {
+                    "1": [["Circuits", "Dr. Green"], ["Signals", "Dr. Black"], ["Math", "Dr. Smith"]],
+                    "2": [["Electronics", "Dr. Kelly"], ["Microcontrollers", "Dr. Harris"], ["DSP", "Dr. Wilson"]],
+                    "3": [["Communication Systems", "Dr. Moore"], ["VLSI", "Dr. Wright"], ["Control Systems", "Dr. Adams"]],
+                    "4": [["Embedded Systems", "Dr. Perry"], ["Antenna Design", "Dr. Turner"], ["Image Processing", "Dr. Collins"]],
+                    "5": [["RF Engineering", "Dr. Cooper"], ["Power Electronics", "Dr. Murphy"], ["Wireless Networks", "Dr. Hughes"]],
+                    "6": [["Biomedical Instrumentation", "Dr. Bennett"], ["Optical Communication", "Dr. Howard"], ["Project", "Dr. Bryant"]]
+                }
+            };
+            
+            timetable.innerHTML = "";
+            if (subjects[department] && subjects[department][semester]) {
+                subjects[department][semester].forEach((subj, index) => {
+                    let row = `<tr>
+                        <td>Period ${index + 1}</td>
+                        <td>${subj[0]}</td>
+                        <td>${subj[1]}</td>
+                    </tr>`;
+                    timetable.innerHTML += row;
+                });
+            } else {
+                timetable.innerHTML = "<tr><td colspan='3'>No Data Available</td></tr>";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Department Timetable</h2>
+    <label for="department">Select Department:</label>
+    <select id="department" onchange="generateTimetable()">
+        <option value="CSE">CSE (UG)</option>
+        <option value="ECE">ECE (UG)</option>
+    </select>
+    <label for="semester">Select Semester:</label>
+    <select id="semester" onchange="generateTimetable()">
+        <option value="1">Semester 1</option>
+        <option value="2">Semester 2</option>
+        <option value="3">Semester 3</option>
+        <option value="4">Semester 4</option>
+        <option value="5">Semester 5</option>
+        <option value="6">Semester 6</option>
+    </select>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Period</th>
+                <th>Subject</th>
+                <th>Teacher</th>
+            </tr>
+        </thead>
+        <tbody id="timetableBody">
+            <tr><td colspan="3">Select a department and semester</td></tr>
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Details</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .student-details-container {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 95%;
+            max-width: 1200px;
+            overflow-x: auto;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        tr:hover {
+            background-color: #e9ecef;
+        }
+        td {
+            color: #333;
+        }
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="student-details-container">
+        <h2>Student Details</h2>
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date of Birth</th>
+                <th>Course</th>
+                <th>Year</th>
+                <th>Education Qualification</th>
+                <th>Address</th>
+                <!-- <th>Documents</th> -->
+                <th>Admission Date</th>
+                <th>Total Index</th>
+            </tr>
+            {% for i in data %}
+            <tr>
+                <td>{{ i.firstname }}</td>
+                <td>{{ i.lastname }}</td>
+                <td>{{ i.email }}</td>
+                <td>{{ i.phonenumber }}</td>
+                <td>{{ i.dateofbirth }}</td>
+                <td>{{ i.course }}</td>
+                <td>{{ i.year }}</td>
+                <td>{{ i.educationqualification }}</td>
+                <td>{{ i.address }}</td>
+                <!-- <td><a href="{{ i.uploaddocuments }}" target="_blank">View</a></td> -->
+                <td>{{ i.dateofadmission }}</td>
+                <td>{{ i.totalindex }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

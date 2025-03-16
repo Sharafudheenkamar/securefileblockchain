@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Scholarship</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .scholarship-form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+        }
+        .scholarship-form-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+        .scholarship-form-container form {
+            display: flex;
+            flex-direction: column;
+        }
+        .scholarship-form-container label {
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .scholarship-form-container input[type="text"],
+        .scholarship-form-container input[type="number"],
+        .scholarship-form-container input[type="date"],
+        .scholarship-form-container input[type="file"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .scholarship-form-container button {
+            padding: 10px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .scholarship-form-container button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="scholarship-form-container">
+        <h2>Add Scholarship</h2>
+        <form>
+            <label for="studentName">Student Name:</label>
+            <input type="text" id="studentName" name="studentName" required>
+
+            <label for="rollNumber">Roll Number:</label>
+            <input type="text" id="rollNumber" name="rollNumber" required>
+
+            <label for="scholarshipName">Scholarship Name:</label>
+            <input type="text" id="scholarshipName" name="scholarshipName" required>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" name="amount" required>
+
+            <label for="dateAwarded">Date Awarded:</label>
+            <input type="date" id="dateAwarded" name="dateAwarded" required>
+
+            <label for="document">Upload Document:</label>
+            <input type="file" id="document" name="document" required>
+
+            <button type="submit">Add Scholarship</button>
+        </form>
+    </div>
+</body>
+</html>

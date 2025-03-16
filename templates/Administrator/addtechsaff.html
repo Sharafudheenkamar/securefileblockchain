@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teaching Staff Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .staff-container {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 600px; /* Increased width */
+            border: 3px solid black;
+            text-align: center;
+        }
+        .staff-container h2 {
+            margin-bottom: 15px;
+            color: black;
+            font-size: 22px;
+        }
+        .form-group {
+            text-align: left;
+            margin-bottom: 10px; /* Reduced height */
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: black;
+            margin-bottom: 3px;
+        }
+        .staff-container input,
+        .staff-container select {
+            width: 100%;
+            padding: 8px; /* Reduced padding to reduce height */
+            border: 2px solid black;
+            border-radius: 4px;
+            background-color: white;
+            color: black;
+        }
+        .staff-container input:focus,
+        .staff-container select:focus {
+            outline: none;
+            border-color: black;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 15px; /* Reduced space */
+        }
+        .action-buttons button {
+            width: 100%;
+            padding: 10px;
+            background-color: black;
+            color: white;
+            border: 2px solid black;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .action-buttons button:hover {
+            background-color: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="staff-container">
+        <h2>Teaching Staff</h2>
+        <form id="teachingStaffForm" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="staffId">
+            
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" required>
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="qualification">Qualification</label>
+                <input type="text" id="qualification" name="qualification" required>
+            </div>
+
+            <div class="form-group">
+                <label for="NET_or_JRF">NET or JRF</label>
+                <select id="NET_or_JRF" name="NET_or_JRF" required>
+                    <option value="" disabled selected>Select</option>
+                    <option value="NET">NET</option>
+                    <option value="JRF">JRF</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="phonenumber">Phone Number</label>
+                <input type="tel" id="phonenumber" name="phonenumber" required>
+            </div>
+
+            <div class="form-group">
+                <label for="currentaddress">Current Address</label>
+                <input type="text" id="currentaddress" name="currentaddress" required>
+            </div>
+
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <div class="form-group">
+                <label for="choosefile">Upload File</label>
+                <input type="file" id="choosefile" name="choosefile" required>
+            </div>
+
+            <div class="action-buttons">
+                <button type="submit">Save Staff</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

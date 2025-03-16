@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Office Staff Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .staff-details-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 1000px;
+            text-align: center;
+            border: 2px solid black;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            color: black;
+        }
+        th {
+            background-color: black;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:nth-child(odd) {
+            background-color: white;
+        }
+        .action-buttons {
+            display: flex;
+            justify-content: space-around;
+        }
+        .action-buttons button {
+            padding: 5px 10px;
+            border: 1px solid black;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .btn-edit {
+            background-color: black;
+            color: white;
+        }
+        .btn-delete {
+            background-color: black;
+            color: white;
+        }
+        .btn-edit:hover, .btn-delete:hover {
+            background-color: #333;
+            color: white;
+        }
+        .add-button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .btn-add {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: black;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px solid black;
+        }
+        .btn-add:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="staff-details-container">
+        <h2>Office Staff Details</h2>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Qualification</th>
+                <th>Phone Number</th>
+                <th>Current Address</th>
+                <th>Action</th>
+            </tr>
+                
+            <tr>
+                <td>i.LOGINID</td>
+                <td>i.staffname</td>
+                <td>i.staffid</td>
+                <td>i.gender</td>
+                <td>i.email</td>
+                <td>i.qualification</td>
+                <td>i.phonenumber</td>
+                <td>i.currentaddress</td>
+                <td>i.choosefile</td>
+                <td><a href="" download>Download</a></td>
+                <td>
+                    <a href="/editteach/1" onclick="return confirm('Are you sure you want to edit?')">
+                        <button class="edit-button">Edit</button>
+                    </a>
+                    <a href="/delete/1" onclick="return confirm('Are you sure you want to delete?')">
+                        <button class="delete-button">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            
+            <tr>
+                <td>i.LOGINID</td>
+                <td>i.staffname</td>
+                <td>i.staffid</td>
+                <td>i.gender</td>
+                <td>i.email</td>
+                <td>i.qualification</td>
+                <td>i.phonenumber</td>
+                <td>i.currentaddress</td>
+                <td>i.choosefile</td>
+                <td><a href="" download>Download</a></td>
+                <td>
+                    <a href="/editteach/2" onclick="return confirm('Are you sure you want to edit?')">
+                        <button class="edit-button">Edit</button>
+                    </a>
+                    <a href="/delete/2" onclick="return confirm('Are you sure you want to delete?')">
+                        <button class="delete-button">Delete</button>
+                    </a>
+                </td>
+            </tr>
+            
+        </table>
+        <div class="button-container">
+            <a href="/addtechstaff" class="add-button">Add</a>
+        </div>
+    </div>
+</body>
+</html>

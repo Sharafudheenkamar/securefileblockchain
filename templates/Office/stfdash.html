@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .header {
+            background-color: #00796b;
+            color: white;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        .card h2 {
+            margin: 0 0 10px;
+            color: #00796b;
+        }
+        .card p {
+            color: #555;
+        }
+        .card button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .card button:hover {
+            background-color: #004d40;
+        }
+        .footer {
+            background-color: #00796b;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Staff Dashboard</h1>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h2>Profile</h2>
+            <p>View and update your profile details.</p>
+            <button onclick="location.href='/viewofficestaffprofile'">Go to Profile</button>
+        </div>
+        <div class="card">
+            <h2>Change Password</h2>
+            <p>Change your account password.</p>
+            <button onclick="location.href='/techchangepassword'">Change Password</button>
+        </div>
+        <div class="card">
+            <h2>Add Admission</h2>
+            <p>Add new student admissions.</p>
+            <button onclick="location.href='add-admission.html'">Add Admission</button>
+        </div>
+        <div class="card">
+            <h2>View Admission</h2>
+            <p>View student admissions.</p>
+            <button onclick="location.href='/stview'">View Admission</button>
+        </div>
+        <div class="card">
+            <h2>Send Complaint</h2>
+            <p>Send a complaint to the administration.</p>
+            <button onclick="location.href='/stusentcmpltviewreplay'">Send Complaint</button>
+        </div>
+        <div class="card">
+            <h2>View Reply</h2>
+            <p>View replies to your complaints.</p>
+            <button onclick="location.href='/stusentcmpltviewreplay'">View Reply</button>
+        </div>
+        <div class="card">
+            <h2>Timetable</h2>
+            <p>View your timetable.</p>
+            <button onclick="location.href='timetable.html'">View Timetable</button>
+        </div>
+    </div>
+    <div class="footer">
+        <p>&copy; 2025 Staff Dashboard. All rights reserved.</p>
+    </div>
+</body>
+</html>

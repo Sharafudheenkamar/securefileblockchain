@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Department</title>
+    <style>
+        /* Page Layout */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Form Container */
+        .department-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            text-align: center;
+        }
+
+        .department-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        /* Input Fields */
+        .department-container input[type="text"],
+        .department-container input[type="number"],
+        .department-container select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        /* Buttons */
+        .department-container button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .save-button {
+            background-color: #4CAF50;
+        }
+
+        .save-button:hover {
+            background-color: #45a049;
+        }
+
+        .delete-button {
+            background-color: #d32f2f;
+            margin-top: 10px;
+        }
+
+        .delete-button:hover {
+            background-color: #c62828;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="department-container">
+        <h2>Department Management</h2>
+        <form id="departmentForm" method="post" >
+            {% csrf_token %}
+            <input type="hidden" name="departmentId">
+            <input type="text" name="departmentname" placeholder="Department Name" required  value="{{ data.departmentname }}">
+            <input type="text" name="departmentcode" placeholder="Department Code" required value="{{ data.departmentcode }}">
+            <input type="text" name="hod" placeholder="Name of hod" required value="{{ data.hod }}">
+            <input type="text" name="departmentstaff" id="departmentstaff" placeholder="Enter department nos" required value="{{ data.departmentstaff }}">
+
+            <button type="submit" class="save-button">Save Department</button>
+            <button type="button" class="delete-button" onclick="deleteDepartment()">Delete Department</button>
+        </form>
+    </div>
+
+    <script>
+
+
+        function deleteDepartment() {
+            const departmentName = prompt("Enter the department name to delete:");
+            if (departmentName) {
+                alert(`Department Deleted: ${departmentName}`);
+            }
+        }
+    </script>
+
+</body>
+</html>
