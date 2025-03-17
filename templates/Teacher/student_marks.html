@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-transform: uppercase;
+        }
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+        th {
+            background-color: #0073e6;
+            color: white;
+            text-transform: uppercase;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e0f7fa;
+        }
+        .container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin: 20px;
+            background: #0073e6;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Student Marks</h1>
+
+    <div class="container">
+        <a href="{% url 'techdashbord' %}" class="btn">Back to Home</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Teacher</th>
+                <th>Student</th>
+                <th>Exam 1</th>
+                <th>Exam 2</th>
+                <th>Exam 3</th>
+                <th>Seminar</th>
+                <th>Assignment</th>
+                <th>Attendance</th>
+                <th>Total</th>
+                <th>Department</th>
+                <th>Semester</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students_marks %}
+            <tr>
+                <td>{{ student.TECHERID.name }}</td>
+                <td>{{ student.STUDENTID.firstname }}</td>
+                <td>{{ student.exam1 }}</td>
+                <td>{{ student.exam2 }}</td>
+                <td>{{ student.exam3 }}</td>
+                <td>{{ student.seminar }}</td>
+                <td>{{ student.assignment }}</td>
+                <td>{{ student.attendance }}</td>
+                <td><strong>{{ student.total }}</strong></td>
+                <td>{{ student.department }}</td>
+                <td>{{ student.semester }}</td>
+                <td>{{ student.year }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>

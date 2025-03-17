@@ -147,7 +147,7 @@ class upres(models.Model):
     reserch_area = models.CharField(max_length=50,null=True, blank=True)
     date = models.CharField(max_length=50,null=True, blank=True)
     department = models.CharField(max_length=50,null=True, blank=True)
-    choosefile = models.CharField(max_length=50,null=True, blank=True)
+    choosefile = models.FileField(upload_to='resfile',null=True, blank=True)
 
 
 

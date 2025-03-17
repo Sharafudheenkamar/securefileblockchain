@@ -98,7 +98,7 @@ class uploaddoc_form(ModelForm):
 class internalupload_form(ModelForm):
     class Meta:
         model=internalupload
-        fields = ['exam1','exam2','exam3','seminar','assignment','attendance','total','department','semester','year']
+        fields = ['STUDENTID','exam1','exam2','exam3','seminar','assignment','attendance','total','department','semester','year']
 
 class upres_form(ModelForm):
     class Meta:
@@ -124,3 +124,11 @@ class UploadceForm(forms.ModelForm):
     class Meta:
         model = uploadce
         fields = ['choosefile']
+
+from django import forms
+from .models import upres
+
+class UpresForm(forms.ModelForm):
+    class Meta:
+        model = upres
+        fields = ['resechtittle', 'author', 'reserch_area', 'date', 'department', 'choosefile']

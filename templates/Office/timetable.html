@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Timetable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #0073e6;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #e0f7fa;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>College Timetable</h1>
+    
+    <table id="timetable">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>9:00 - 10:00</th>
+                <th>10:00 - 11:00</th>
+                <th>11:15 - 12:15</th>
+                <th>1:00 - 2:00</th>
+                <th>2:00 - 3:00</th>
+                <th>3:00 - 4:00</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in timetable_entries %}
+            <tr>
+                <td>{{ entry.day }}</td>
+                <td>{{ entry.slot_9_10.name }}</td>
+                <td>{{ entry.slot_10_11.name }}</td>
+                <td>{{ entry.slot_11_12.name }}</td>
+                <td>{{ entry.slot_1_2.name }}</td>
+                <td>{{ entry.slot_2_3.name }}</td>
+                <td>{{ entry.slot_3_4.name }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const dayOrder = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+            let table = document.getElementById("timetable");
+            let tbody = table.getElementsByTagName("tbody")[0];
+            let rows = Array.from(tbody.getElementsByTagName("tr"));
+
+            // Sort rows based on the day of the week
+            rows.sort((a, b) => {
+                let dayA = a.cells[0].textContent.trim();
+                let dayB = b.cells[0].textContent.trim();
+                return dayOrder.indexOf(dayA) - dayOrder.indexOf(dayB);
+            });
+
+            // Append rows in sorted order
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+        });
+    </script>
+
+</body>
+</html>

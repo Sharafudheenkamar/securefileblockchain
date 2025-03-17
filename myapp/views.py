@@ -465,7 +465,7 @@ class Addscholarship(View):
             return HttpResponse('''<script>alert('scholarship added susccesfully');window.location='/addscholarship'</script>''')
 class changepassword(View):
     def get(self, request):
-        return render(request, 'Office/changepassword.html')
+        return render(request, 'Office/changePassword.html')
     def post(self, request):
         # username = request.POST.get('username')
         old_password = request.POST.get('old_password')
@@ -486,6 +486,43 @@ class changepassword(View):
 
         except logintable.DoesNotExist:
             return HttpResponse('''<script>alert('User not found');window.location='/changepassword'</script>''')
+class select_class(View):
+    def get(self, request):
+        obj = Class.objects.all()
+        return render(request, "Office/select_class.html", {'obj': obj})
+class manage_timetable(View):
+    
+    def post(self, request):
+        class_id=request.POST['class_id']
+        request.session['class_id']=class_id
+        class_obj = Class.objects.get(id=class_id)
+        subjects = Subject.objects.all()
+        existing_days = Timetable.objects.filter(CLASS_id=class_obj).values_list('day', flat=True)
+        all_days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        available_days = [day for day in all_days if day not in existing_days]
+        return render(request, 'Office/manage_timetable.html', {'subjects': subjects,'available_days': available_days})
+class add_timetable_action(View):
+    def post(self, request):
+        day = request.POST['day']
+        slot_9_10 = request.POST['slot_9_10']
+        slot_10_11 = request.POST['slot_10_11']
+        slot_11_12 = request.POST['slot_11_12']
+        slot_1_2 = request.POST['slot_1_2']
+        slot_2_3 = request.POST['slot_2_3']
+        slot_3_4 = request.POST['slot_3_4']
+        obj = Timetable()
+        obj.CLASS=Class.objects.get(id=request.session['class_id'])
+        obj.day =day
+        obj.slot_9_10=Subject.objects.get(id=slot_9_10)
+        obj.slot_10_11=Subject.objects.get(id=slot_10_11)
+        obj.slot_11_12=Subject.objects.get(id=slot_11_12)
+        obj.slot_1_2=Subject.objects.get(id=slot_1_2)
+        obj.slot_2_3=Subject.objects.get(id=slot_2_3)
+        obj.slot_3_4=Subject.objects.get(id=slot_3_4)
+        obj.save()
+        return HttpResponse('''<script>alert("successfully added");window.location="/select_class#about"</script>''')
+
+
 class createtimetable(View):
     def get(self, request):
         return render(request, 'Office/createtimetable.html')
@@ -524,12 +561,45 @@ class viewofficestaffprofile(View):
         vi=addofficestaff.objects.filter(LOGINID__id=request.session['loginid']).first()
         print(vi)
         return render(request, 'Office/viewofficestaffprofile.html',{'data':vi})
+
+
+def view_student_marks(request):
+    students_marks = internalupload.objects.all()
+    return render(request, 'Teacher/student_marks.html', {'students_marks': students_marks})
 class Internalupload(View):
+    def get(self, request):
+        st=addstudent.objects.all()
+        return render(request, 'Teacher/internalupload.html',{'student':st})
+
     def post(self, request):
         c = internalupload_form(request.POST, request.FILES)
+        teinst=addtechsaff.objects.filter(LOGINID__id=request.session['loginid']).first()
         if c.is_valid():
             reg = c.save()
-            return HttpResponse('''<script>alert('Result added susccesfully');window.location='/viewstudent'</script>''')
+            reg.TECHERID=teinst
+            reg.save()
+            marks_data = {
+            "student_id": request.POST['STUDENTID'],
+            "roll_number": request.POST['roll'],
+            "exam1": request.POST['exam1'],
+            "exam2": request.POST['exam2'],
+            "seminar": request.POST['seminar'],
+            "assignment": request.POST['assignment'],
+            "total_marks": request.POST['totalMarks'],
+            "timestamp": time.time(),
+        }
+            marks_data_json = json.dumps(marks_data)
+
+            # Encrypt data
+            encrypted_data = cipher_suite.encrypt(marks_data_json.encode())
+
+            # Convert encrypted data to base64 string (for storage in blockchain)
+            encrypted_data_str = base64.b64encode(encrypted_data).decode()
+
+            # Add encrypted data to blockchain
+            blockchain.add_data(encrypted_data_str)
+            blockchain.mine_block()
+            return HttpResponse('''<script>alert('Result added susccesfully');window.location='/student-marks/'</script>''')
         return render(request, 'Teacher/internalupload.html')
 class stview(View):
     def get(self, request):
@@ -548,7 +618,10 @@ class techchangepassword(View):
         return render(request, 'Teacher/techchangepassword.html')
 class techstaffprofileview(View):
     def get(self, request):
-        vi=addtechsaff.objects.all()
+        print(request.session['loginid'])
+
+        vi=addtechsaff.objects.filter(LOGINID__id=request.session['loginid']).first()
+        print(vi)
         return render(request, 'Teacher/techstaffprofileview.html',{'data':vi})
 class Upres(View):
     def get(self, request):
@@ -558,6 +631,20 @@ class Upres(View):
         if c.is_valid():
             reg = c.save()
             return HttpResponse('''<script>alert('Result added susccesfully');window.location='/viewstudent'</script>''')
+
+class select_class1(View):
+    def get(self, request):
+        obj = Class.objects.all()
+        return render(request, "Office/select_class1.html", {'obj': obj})
+class view_timetable(View):
+    def post(self, request):
+        class_id=request.POST['class_id']
+        # Query all timetable entries from the database
+        timetable_entries = Timetable.objects.filter(CLASS_id=class_id).order_by('day')
+        # Render the timetable in a template
+        return render(request, 'Office/timetable.html', {'timetable_entries': timetable_entries})  
+
+
 from rest_framework.views import APIView
 from rest_framework.permissions import AllowAny
 from rest_framework.status import HTTP_200_OK
@@ -588,7 +675,62 @@ class LoginPageApi(APIView):
         else:
             response_dict["message "] = "Your account has not been approved yet or you are a CLIENT user."
             return Response(response_dict, HTTP_200_OK)
-        
+from django.shortcuts import render, redirect
+from .models import upres
+from .forms import UpresForm  # We will create this form below
+
+# View to upload research details
+def upload_research(request):
+    if request.method == 'POST':
+        login_id = request.session['loginid']
+
+            # ✅ Check if login ID exists
+        try:
+            login_instance = logintable.objects.get(id=login_id)
+        except logintable.DoesNotExist:
+            return HttpResponse(
+                '''<script>alert('Invalid login ID!'); window.location='/uploadfile';</script>'''
+            )
+        login_id = request.session['loginid']
+
+        # ✅ Check if login ID exists
+        try:
+            login_instance = logintable.objects.get(id=login_id)
+        except logintable.DoesNotExist:
+            return HttpResponse(
+                '''<script>alert('Invalid login ID!'); window.location='/uploadfile';</script>'''
+            )
+        form = UpresForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            doc_data = {
+                    "LOGINID": login_id,
+                    "resechtittle": request.POST['resechtittle'],
+                    "author": request.POST['author'],
+                    "reserch_area": request.POST['reserch_area'],
+                    "department": request.POST['department'],
+                    "choosefile": request.FILES.get('choosefile').name if request.FILES.get('choosefile') else None,
+                    "timestamp": time.time()
+                }
+            doc_data_json = json.dumps(doc_data)
+
+            # Encrypt data
+            encrypted_data = cipher_suite.encrypt(doc_data_json.encode())
+            encrypted_data_str = base64.b64encode(encrypted_data).decode()
+
+            # Add encrypted data to blockchain
+            blockchain.add_data(encrypted_data_str)
+            blockchain.mine_block()
+            return redirect('view_research')  # Redirect to the view page
+    else:
+        form = UpresForm()
+    return render(request, 'upload_research.html', {'form': form})
+
+# View to display uploaded research data
+def view_research(request):
+    researches = upres.objects.all()
+    return render(request, 'view_research.html', {'researches': researches})
+      
 #####################
 from rest_framework.views import APIView
 from rest_framework.response import Response

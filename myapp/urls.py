@@ -33,6 +33,9 @@ urlpatterns = [
     path('viewtechingstaff', viewtechingstaff.as_view(), name='viewtechingstaff'),
     path('Addstudent', Addstudent.as_view(), name='Addstudent'),
     # path('addscholarshipview', Addscholarshipview.as_view(), name='addscholarshipview'),
+    path("select_class",select_class.as_view(),name="select_class"),
+    path("manage_timetable",manage_timetable.as_view(),name="manage_timetable"),
+    path("add_timetable_action",add_timetable_action.as_view(),name="add_timetable_action"),
     path('changepassword', changepassword.as_view(), name='changepassword'),
     path('createtimetable', createtimetable.as_view(), name='createtimetable'),
     path('officestaffdsh', officestaffdsh.as_view(), name='officestaffdsh'),
@@ -43,10 +46,11 @@ urlpatterns = [
     path('internalupload', Internalupload.as_view(), name='internalupload'),
     path('stview', stview.as_view(), name='stview'),
     path('techdashbord', techdashbord.as_view(), name='techdashbord'),
-    path('techstaffprofileview', techchangepassword.as_view(), name='techchangepassword'),
+    path('student-marks/', view_student_marks, name='view_student_marks'),
     path('techstaffprofileview', techstaffprofileview.as_view(), name='techstaffprofileview'),
     path('upres', Upres.as_view(), name='upres'),
-    # path('viewTimeTable', viewTimeTable.as_view(), name='viewTimeTable'),
+    path('viewTimeTable', view_timetable.as_view(), name='viewTimeTable'),
+    path("select_class1",select_class1.as_view(),name="select_class1"),
     path('delete/<int:id>', delete.as_view(), name='delete'),
     path('editteach/<int:id>', EditTeach.as_view(), name='edit_techingstaff'),
     path('editoffice/<int:id>', editoffice.as_view(), name='editoffice'),
@@ -66,7 +70,8 @@ urlpatterns = [
 
     path('students/', AddStudentAPI.as_view(), name='students_list'),
     path('students/<int:pk>/', AddStudentAPI.as_view(), name='student_detail'),
-
+    path('upload/', upload_research, name='upload_research'),
+    path('view/', view_research, name='view_research'),
     #####
     path('internalupload/', InternalUploadAPIView.as_view()),  # For GET all and POST
     path('internalupload/<int:pk>/', InternalUploadAPIView.as_view()),  # For GET single and PUT

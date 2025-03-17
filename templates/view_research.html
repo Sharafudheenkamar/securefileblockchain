@@ -1,0 +1,93 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .research-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 1000px;
+        }
+        h2 {
+            text-align: center;
+            color: #0073e6;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #0073e6;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #e0f7fa;
+        }
+        .download-btn {
+            text-decoration: none;
+            background-color: #0073e6;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .download-btn:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="research-container">
+        <h2>Uploaded Research Details</h2>
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Research Area</th>
+                <th>Date</th>
+                <th>Department</th>
+                <th>Download</th>
+            </tr>
+            {% for research in researches %}
+            <tr>
+                <td>{{ research.resechtittle }}</td>
+                <td>{{ research.author }}</td>
+                <td>{{ research.reserch_area }}</td>
+                <td>{{ research.date }}</td>
+                <td>{{ research.department }}</td>
+                <td><a href="{{ research.choosefile.url }}" class="download-btn" download>Download</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+
+</body>
+</html>

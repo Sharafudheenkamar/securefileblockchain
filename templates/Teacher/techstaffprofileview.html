@@ -3,111 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Staff Profile View</title>
+    <title>View Office Staff Profile</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e0f7fa;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
         }
-        .profile-container {
+        .staff-profile-container {
             background-color: #fff;
-            padding: 30px;
+            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 1000px;
+        }
+        .staff-profile-container h2 {
+            margin-bottom: 20px;
+            color: #333;
             text-align: center;
         }
-        .profile-container h2 {
-            margin-bottom: 20px;
-            color: #00796b;
-        }
-        .profile-container img {
-            display: block;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border: 4px solid #00796b;
-        }
-        .profile-container table {
+        .staff-profile-container table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
         }
-        .profile-container table, th, td {
+        .staff-profile-container table, th, td {
             border: 1px solid #ccc;
         }
-        .profile-container th, td {
-            padding: 12px;
+        .staff-profile-container th, td {
+            padding: 10px;
             text-align: left;
         }
-        .profile-container th {
-            background-color: #00796b;
-            color: #fff;
+        .staff-profile-container th {
+            background-color: #007bff;
+            color: white;
         }
-        .profile-container tr:nth-child(even) {
+        .staff-profile-container tr:nth-child(even) {
             background-color: #f2f2f2;
         }
     </style>
 </head>
 <body>
-    <div class="profile-container">
-        <h2>Staff Profile</h2>
-        <img src="profile-photo.jpg" alt="Profile Photo">
+    <div class="staff-profile-container">
+        <h2>Office Staff Profile</h2>
         <table>
             <tr>
-                <th>First Name</th>
-                <td>John</td>
+                <th>Field</th>
+                <th>Details</th>
             </tr>
             <tr>
-                <th>Last Name</th>
-                <td>Doe</td>
+                <td>Name</td>
+                <td>{{data.name}}</td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>{{data.gender}}</td>
             </tr>
             <tr>
-                <th>Email</th>
-                <td>john.doe@example.com</td>
+                <td>Qualification</td>
+                <td>{{data.qualification}}</td>
             </tr>
             <tr>
-                <th>Phone</th>
-                <td>123-456-7890</td>
+                <td>Phone Number</td>
+                <td>{{data.phonenumber}}</td>
             </tr>
             <tr>
-                <th>Department</th>
-                <td>Administration</td>
-            </tr>
-            <tr>
-                <th>Joining Date</th>
-                <td>2015-01-15</td>
-            </tr>
-            <tr>
-                <th>Qualification</th>
-                <td>MBA</td>
-            </tr>
-            <tr>
-                <th>Age</th>
-                <td>45</td>
-            </tr>
-            <tr>
-                <th>Date of Birth</th>
-                <td>1980-05-20</td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td>Male</td>
-            </tr>
-            <tr>
-                <th>NET/JRF Status</th>
-                <td>None</td>
-            </tr>
-            <tr>
-                <th>Marital Status</th>
-                <td>Married</td>
+                <td>Current Address</td>
+                <td>{{data.currentaddress}}</td>
             </tr>
         </table>
     </div>

@@ -39,8 +39,17 @@
     </script>
 </head>
 <body>
-    <form>
+    <form action="" method="post">
+        {% csrf_token %}
+
         <h3>Upload Internal Marks</h3>
+        <label for="student">Student:</label>
+        <select name="STUDENTID" id="">
+            {% for i in student %}
+            <option value="{{i.id}}">{{i.firstname}}</option>
+            {% endfor%}
+        </select><br>
+        <!-- <input type="text" id="roll" name="roll" required><br> -->
         <label for="roll">Roll Number:</label>
         <input type="text" id="roll" name="roll" required><br>
         <label for="exam1">Exam 1:</label>
